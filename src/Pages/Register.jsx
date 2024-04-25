@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
+import { serverURL } from '../API/url';
 
 function Register() {
     const [values , setValues] = useState({
@@ -21,14 +22,18 @@ function Register() {
       if (!name || !email || !password) {
           alert('Please Fill the form completely..!!');
       } else {
-          axios.post('http://localhost:4000/signup', values)
+          axios.post(`${serverURL}/signup`, values)
               .then(res => {
                   alert('Registered successfully..!!');
                   navigate('/login')
               })
-              .catch(err => console.log(err));
+              .catch(err => {
+                console.log(err)
+              });
       }
   };
+
+
   
   return (
     <>
